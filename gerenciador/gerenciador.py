@@ -15,6 +15,7 @@ def listar_inventario(inv):
 def adicionar_item(item, valor, inv):
     '''A função recebe como parâmetro um dicionário e 
     retorna um dataframe com todos os ítens e seus valores
+    Caso a chave ja estiver no iventario será lançada una exeção.
 
 
     :param item: Nome do item a ser adicionado como 
@@ -50,7 +51,8 @@ def remover_item(chave, inv):
 def busca_item(chave, inv):
     '''
     A função recebe uma chave busca o item referente aquela chave e retorna
-    o item e chave dado
+    o item e chave dado.
+    Caso a chave não estiver no iventario será lançada una exeção.
     
     :param chave: chave do item que será buscado
     :chave type: str
@@ -60,16 +62,10 @@ def busca_item(chave, inv):
     :rtype: dict
 
     '''
+    
     if chave in inv:
         return {chave:inv[chave]}
     else:
         raise Exception('O item não está no inventario')
     
-dic = {'a':1, 'b':2, 'c':3}
-print(dic)
-#print(adicionar_item('a', 4, dic))
-dic = adicionar_item('d', 4, dic)
-print(dic)
-print(busca_item('a', dic))
-print(busca_item('d', dic))
-
+    
