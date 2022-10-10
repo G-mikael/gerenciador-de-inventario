@@ -1,5 +1,5 @@
 import numpy
-import pandas
+import pandas as pd
 
 def listar_inventario(inv):
     '''A função recebe como parâmetro um dicionário e 
@@ -11,6 +11,15 @@ def listar_inventario(inv):
     :return: Dataframe
     :rtype: Pandas.Dataframe
     '''
+    try:
+        chaves = list(inv.keys())
+        valores = {'Valores':list(inv.values())}
+        
+        listagem = pd.DataFrame(data=valores, index=chaves)
+        return listagem
+    except:
+        print('Parâmetro inválido')
+        return None
     
 def adicionar_item(item, valor, inv):
     '''A função recebe como parâmetro um dicionário e 
@@ -38,6 +47,16 @@ def remover_item(chave, inv):
     :return: Dicionário com o item a mais
     :rtype: dict
     '''
+    try:
+        del inv[chave]
+        return inv
+    except KeyError:
+        print('Chave dada inválida. Use chave válida!')
+    except NameError:
+        print('O dicionário não existe!')
+        
+        
+        
 
 def busca_item(chave):
     '''
